@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/training"
+        android:title="@string/label_daftar_pelatihan" />
+
+    <item
+        android:id="@+id/training_following"
+        android:title="@string/label_pelatihan_diikuti" />
+
+    <item
+        android:id="@+id/job_vacancy"
+        android:title="@string/label_lowongan_pekerjaan" />
+
+    <item
+        android:id="@+id/about"
+        android:title="@string/label_profil_perusahaan" />
+
+    <item
+        android:id="@+id/profile"
+        android:title="@string/label_pengaturan_akun" />
+
+</menu>

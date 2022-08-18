@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/job_vacancy"
+    app:startDestination="@id/jobVacancyIndexFragment">
+
+    <fragment
+        android:id="@+id/jobVacancyIndexFragment"
+        android:name="com.ssn.app.ui.job_vacancy.index.JobVacancyIndexFragment"
+        android:label="@string/label_lowongan_pekerjaan"
+        tools:layout="@layout/fragment_job_vacancy_index" />
+
+</navigation>

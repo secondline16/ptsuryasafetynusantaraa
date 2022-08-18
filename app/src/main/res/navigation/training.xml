@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/training"
+    app:startDestination="@id/trainingIndexFragment">
+
+    <fragment
+        android:id="@+id/trainingIndexFragment"
+        android:name="com.ssn.app.ui.training.index.TrainingIndexFragment"
+        android:label="@string/label_daftar_pelatihan"
+        tools:layout="@layout/fragment_training_index" />
+</navigation>

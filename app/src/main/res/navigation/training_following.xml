@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/training_following"
+    app:startDestination="@id/trainingFollowingIndexFragment">
+
+    <fragment
+        android:id="@+id/trainingFollowingIndexFragment"
+        android:name="com.ssn.app.ui.training_following.index.TrainingFollowingIndexFragment"
+        android:label="@string/label_pelatihan_diikuti"
+        tools:layout="@layout/fragment_training_following_index" />
+</navigation>
