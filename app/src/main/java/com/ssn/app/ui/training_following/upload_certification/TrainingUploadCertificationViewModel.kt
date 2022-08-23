@@ -1,6 +1,7 @@
 package com.ssn.app.ui.training_following.upload_certification
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ssn.app.data.api.config.ApiClient
 import com.ssn.app.data.api.config.ApiClient.fetchResult
 import com.ssn.app.vo.UiState
@@ -8,6 +9,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
@@ -31,8 +33,8 @@ class TrainingUploadCertificationViewModel : ViewModel() {
         workExperience: File,
         portfolio: File,
         optionalFile: File?
-    ) = with(_uploadCertificateViewState) {
-        trySend(UiState.Loading())
+    ) = viewModelScope.launch {
+        _uploadCertificateViewState.send(UiState.Loading())
         ApiClient.getApiService().uploadTrainingRequirement(
             cv = cv.run { MultipartBody.Part.createFormData("cv", name, asRequestBody()) },
             ktp = ktp.run { MultipartBody.Part.createFormData("ktp", name, asRequestBody()) },
@@ -50,10 +52,10 @@ class TrainingUploadCertificationViewModel : ViewModel() {
             }
         ).fetchResult(
             onSuccess = { response ->
-                _uploadCertificateViewState.trySend(UiState.Success(response.meta?.message.orEmpty()))
+                _uploadCertificateViewState.send(UiState.Success(response.meta?.message.orEmpty()))
             },
             onError = { throwable ->
-                _uploadCertificateViewState.trySend(UiState.Error(throwable))
+                _uploadCertificateViewState.send(UiState.Error(throwable))
             }
         )
     }

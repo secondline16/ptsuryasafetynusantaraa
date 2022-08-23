@@ -9,7 +9,7 @@ data class TrainingFollowingResponse(
     val id: Int? = null,
     @SerializedName("training_name")
     val trainingName: String? = null,
-    @SerializedName("training_status")
+    @SerializedName("status")
     val trainingStatus: String? = null
 ) {
     fun asDomain(): TrainingFollowing = TrainingFollowing(

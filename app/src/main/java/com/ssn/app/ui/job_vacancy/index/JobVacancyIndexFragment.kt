@@ -32,13 +32,18 @@ class JobVacancyIndexFragment : Fragment(R.layout.fragment_job_vacancy_index) {
         initRecyclerView()
         initObserve()
         initListener()
+        fetchData()
     }
 
     private fun initListener() {
         binding.root.setOnRefreshListener {
-            isRefresh = true
-            viewModel.getJobVacancyList()
+            fetchData(refresh = true)
         }
+    }
+
+    private fun fetchData(refresh: Boolean = false) {
+        isRefresh = refresh
+        viewModel.getJobVacancyList()
     }
 
     private fun initObserve() {

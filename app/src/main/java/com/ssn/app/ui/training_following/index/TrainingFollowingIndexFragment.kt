@@ -34,12 +34,17 @@ class TrainingFollowingIndexFragment : Fragment(R.layout.fragment_training_follo
         initRecyclerView()
         initObserve()
         initListener()
+        fetchData()
+    }
+
+    private fun fetchData(refresh: Boolean = false) {
+        isRefresh = refresh
+        viewModel.getTrainingList()
     }
 
     private fun initListener() {
         binding.root.setOnRefreshListener {
-            isRefresh = true
-            viewModel.getTrainingList()
+            fetchData(refresh = true)
         }
     }
 

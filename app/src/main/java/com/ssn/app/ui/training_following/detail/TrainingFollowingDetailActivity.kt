@@ -39,9 +39,6 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     }
 
     private fun initListener() = with(binding) {
-        btnTaskUpload.setOnClickListener {
-        }
-
         btnTrainingBook.setOnClickListener {
         }
 

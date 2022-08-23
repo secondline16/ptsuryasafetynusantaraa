@@ -11,24 +11,25 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class JobVacancyDetailViewModel : ViewModel() {
 
     private val _jobVacancyDetailViewState: Channel<UiState<JobVacancyDetail>> = Channel(capacity = 1)
     val jobVacancyDetailViewState = _jobVacancyDetailViewState.receiveAsFlow()
 
-    fun getJobVacancyDetail(id: Int) {
-        _jobVacancyDetailViewState.trySend(UiState.Loading())
+    fun getJobVacancyDetail(id: Int) = viewModelScope.launch {
+        _jobVacancyDetailViewState.send(UiState.Loading())
         ApiClient.getApiService().getJobVacancyDetail(id).fetchResult(
             onSuccess = { response ->
                 if (response.data == null) {
-                    _jobVacancyDetailViewState.trySend(UiState.Error(MissingResultException()))
+                    _jobVacancyDetailViewState.send(UiState.Error(MissingResultException()))
                 } else {
-                    _jobVacancyDetailViewState.trySend(UiState.Success(response.data.asDomain()))
+                    _jobVacancyDetailViewState.send(UiState.Success(response.data.asDomain()))
                 }
             },
             onError = { throwable ->
-                _jobVacancyDetailViewState.trySend(UiState.Error(throwable))
+                _jobVacancyDetailViewState.send(UiState.Error(throwable))
             }
         )
     }

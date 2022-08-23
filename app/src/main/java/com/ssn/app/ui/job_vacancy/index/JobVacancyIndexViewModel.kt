@@ -11,6 +11,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class JobVacancyIndexViewModel : ViewModel() {
 
@@ -18,20 +19,16 @@ class JobVacancyIndexViewModel : ViewModel() {
     val jobVacancyIndexViewState = _jobVacancyIndexViewState.receiveAsFlow()
         .stateIn(viewModelScope, SharingStarted.Lazily, UiState.Loading())
 
-    fun getJobVacancyList() {
-        _jobVacancyIndexViewState.trySend(UiState.Loading())
+    fun getJobVacancyList() = viewModelScope.launch {
+        _jobVacancyIndexViewState.send(UiState.Loading())
         ApiClient.getApiService().getJobVacancyList().fetchResult(
             onSuccess = { response ->
                 val jobVacancyList = response.data?.map(JobVacancyResponse::asDomain).orEmpty()
-                _jobVacancyIndexViewState.trySend(UiState.Success(jobVacancyList))
+                _jobVacancyIndexViewState.send(UiState.Success(jobVacancyList))
             },
             onError = { throwable ->
-                _jobVacancyIndexViewState.trySend(UiState.Error(throwable))
+                _jobVacancyIndexViewState.send(UiState.Error(throwable))
             }
         )
-    }
-
-    init {
-        getJobVacancyList()
     }
 }

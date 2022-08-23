@@ -13,83 +13,84 @@ import com.ssn.app.data.api.response.base.BaseResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface ApiService {
 
+    @FormUrlEncoded
     @POST("auth/login")
-    fun login(
-        @Query("email") email: String, // TODO Request untuk diubah jadi username sesuai design, bukan email
-        @Query("password") password: String
-    ): Call<BaseResponse<UserResponse>> // TODO Request untuk disamakan responsenya dengan get profile
+    suspend fun login(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Response<BaseResponse<UserResponse>>
 
     @POST("auth/register")
-    fun register(
+    suspend fun register(
         @Body registerRequest: RegisterRequest
-    ): Call<BaseResponse<Any>>
+    ): Response<BaseResponse<Any>>
 
     @GET("profile")
-    fun getProfile(): Call<BaseResponse<UserResponse>>
+    suspend fun getProfile(): Response<BaseResponse<UserResponse>>
 
     @PUT("profile/edit")
-    fun updateProfile(
+    suspend fun updateProfile(
         @Body editProfileRequest: EditProfileRequest
-    ): Call<BaseResponse<UserResponse>>
+    ): Response<BaseResponse<UserResponse>>
 
-    // TODO ask BE error
     @Multipart
     @POST("profile/avatar/edit")
-    fun updateAvatar(
+    suspend fun updateAvatar(
         @Part photo: MultipartBody.Part
-    ): Call<BaseResponse<String>>
+    ): Response<BaseResponse<String>>
 
     @GET("vacancies")
-    fun getJobVacancyList(): Call<BaseResponse<List<JobVacancyResponse>>>
+    suspend fun getJobVacancyList(): Response<BaseResponse<List<JobVacancyResponse>>>
 
     @GET("vacancy/{id}")
-    fun getJobVacancyDetail(
+    suspend fun getJobVacancyDetail(
         @Path("id") id: Int
-    ): Call<BaseResponse<JobVacancyDetailResponse>>
+    ): Response<BaseResponse<JobVacancyDetailResponse>>
 
     @GET("trainings")
-    fun getTrainingList(): Call<BaseResponse<List<TrainingResponse>>>
+    suspend fun getTrainingList(): Response<BaseResponse<List<TrainingResponse>>>
 
     @GET("training/{id}")
-    fun getTrainingDetail(
+    suspend fun getTrainingDetail(
         @Path("id") id: Int
-    ): Call<BaseResponse<TrainingDetailResponse>>
+    ): Response<BaseResponse<TrainingDetailResponse>>
 
-    // TODO ask BE error invoice proof failed to upload and customer id from?
     @Multipart
     @POST("training/register")
-    fun registerTraining(
+    suspend fun registerTraining(
         @Part("training_id") trainingId: RequestBody,
         @Part invoiceProof: MultipartBody.Part
-    ): Call<BaseResponse<Any>>
+    ): Response<BaseResponse<Any>>
 
     @GET("followup_trainings")
-    fun getFollowingTrainingList(): Call<BaseResponse<List<TrainingFollowingResponse>>>
+    suspend fun getFollowingTrainingList(): Response<BaseResponse<List<TrainingFollowingResponse>>>
 
     @GET("followup_training/{training_record_id}")
-    fun getFollowingTrainingDetail(
+    suspend fun getFollowingTrainingDetail(
         @Path("training_record_id") id: Int
-    ): Call<BaseResponse<TrainingFollowingDetailResponse>>
+    ): Response<BaseResponse<TrainingFollowingDetailResponse>>
 
     @Multipart
     @POST("training/requirement")
-    fun uploadTrainingRequirement(
+    suspend fun uploadTrainingRequirement(
         @Part cv: MultipartBody.Part,
         @Part ktp: MultipartBody.Part,
         @Part ijazah: MultipartBody.Part,
         @Part workExperience: MultipartBody.Part,
         @Part portfolio: MultipartBody.Part,
         @Part optionalFile: MultipartBody.Part? = null
-    ): Call<BaseResponse<Any>>
+    ): Response<BaseResponse<Any>>
 }

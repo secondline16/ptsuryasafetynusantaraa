@@ -11,6 +11,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class TrainingIndexViewModel : ViewModel() {
 
@@ -18,20 +19,16 @@ class TrainingIndexViewModel : ViewModel() {
     val trainingIndexViewState = _trainingIndexViewState.receiveAsFlow()
         .stateIn(viewModelScope, SharingStarted.Lazily, UiState.Loading())
 
-    fun getTrainingList() {
-        _trainingIndexViewState.trySend(UiState.Loading())
+    fun getTrainingList() = viewModelScope.launch {
+        _trainingIndexViewState.send(UiState.Loading())
         ApiClient.getApiService().getTrainingList().fetchResult(
             onSuccess = { response ->
                 val trainingList = response.data?.map(TrainingResponse::asDomain).orEmpty()
-                _trainingIndexViewState.trySend(UiState.Success(trainingList))
+                _trainingIndexViewState.send(UiState.Success(trainingList))
             },
             onError = { throwable ->
-                _trainingIndexViewState.trySend(UiState.Error(throwable))
+                _trainingIndexViewState.send(UiState.Error(throwable))
             }
         )
-    }
-
-    init {
-        getTrainingList()
     }
 }

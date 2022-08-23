@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    private const val BASE_URL = "https://sisurty.herokuapp.com/api/v1/"
+    private const val BASE_URL = "https://ptsuryasafetynusantara.gals.my.id/api/v1/"
 
     private lateinit var appContext: Context
     private lateinit var okHttpClient: OkHttpClient
@@ -88,5 +88,25 @@ object ApiClient {
                 onError.invoke(t)
             }
         })
+    }
+
+    suspend fun <ResponseType> Response<BaseResponse<ResponseType>>.fetchResult(
+        onSuccess: suspend (BaseResponse<ResponseType>) -> Unit,
+        onError: suspend (Throwable) -> Unit
+    ) {
+        try {
+            if (isSuccessful) {
+                val body = body()
+                if (body?.meta?.code != 200) {
+                    onError.invoke(Throwable(body?.meta?.message ?: "Undefined Error"))
+                } else {
+                    onSuccess.invoke(body)
+                }
+            } else {
+                onError.invoke(Throwable(("${code()} - ${message()}")))
+            }
+        } catch (e: Exception) {
+            onError.invoke(e)
+        }
     }
 }

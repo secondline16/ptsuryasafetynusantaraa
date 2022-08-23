@@ -11,6 +11,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
 class TrainingFollowingIndexViewModel : ViewModel() {
 
@@ -19,19 +20,17 @@ class TrainingFollowingIndexViewModel : ViewModel() {
         .stateIn(viewModelScope, SharingStarted.Lazily, UiState.Loading())
 
     fun getTrainingList() {
-        _trainingFollowingIndexViewState.trySend(UiState.Loading())
-        ApiClient.getApiService().getFollowingTrainingList().fetchResult(
-            onSuccess = { response ->
-                val trainingFollowingList = response.data?.map(TrainingFollowingResponse::asDomain).orEmpty()
-                _trainingFollowingIndexViewState.trySend(UiState.Success(trainingFollowingList))
-            },
-            onError = { throwable ->
-                _trainingFollowingIndexViewState.trySend(UiState.Error(throwable))
-            }
-        )
-    }
-
-    init {
-        getTrainingList()
+        viewModelScope.launch {
+            _trainingFollowingIndexViewState.send(UiState.Loading())
+            ApiClient.getApiService().getFollowingTrainingList().fetchResult(
+                onSuccess = { response ->
+                    val trainingFollowingList = response.data?.map(TrainingFollowingResponse::asDomain).orEmpty()
+                    launch { _trainingFollowingIndexViewState.send(UiState.Success(trainingFollowingList)) }
+                },
+                onError = { throwable ->
+                    launch { _trainingFollowingIndexViewState.send(UiState.Error(throwable)) }
+                }
+            )
+        }
     }
 }

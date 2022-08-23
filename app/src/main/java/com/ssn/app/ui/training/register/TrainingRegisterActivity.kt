@@ -1,7 +1,6 @@
 package com.ssn.app.ui.training.register
 
 import android.content.Context
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.ActivityResult
@@ -26,7 +25,7 @@ import com.ssn.app.helper.FilePickerHelper.getTempFileUri
 import com.ssn.app.helper.Helper.camera
 import com.ssn.app.helper.Helper.showImagePickerSourceDialog
 import com.ssn.app.helper.Helper.storage
-import com.ssn.app.ui.training.detail.TrainingDetailActivity
+import com.ssn.app.ui.training_following.detail.TrainingFollowingDetailActivity
 import com.ssn.app.vo.UiState
 import kotlinx.coroutines.launch
 import java.io.File
@@ -98,14 +97,14 @@ class TrainingRegisterActivity : AppCompatActivity() {
             is UiState.Loading -> Unit
             is UiState.Error -> binding.root.showSnackBar(uiState.e.message.orEmpty())
             is UiState.Success -> {
-                navigateToDetailTraining()
+                navigateToDetailFollowingTraining()
                 finish()
             }
         }
     }
 
-    private fun navigateToDetailTraining() {
-        TrainingDetailActivity.start(this, id)
+    private fun navigateToDetailFollowingTraining() {
+        TrainingFollowingDetailActivity.start(this, id)
     }
 
     private fun showLoading(show: Boolean) = with(binding) {

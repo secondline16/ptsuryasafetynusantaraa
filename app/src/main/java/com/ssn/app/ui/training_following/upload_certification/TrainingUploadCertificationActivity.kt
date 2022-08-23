@@ -1,7 +1,6 @@
 package com.ssn.app.ui.training_following.upload_certification
 
 import android.content.Context
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.ActivityResult
@@ -71,8 +70,13 @@ class TrainingUploadCertificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadCertificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initToolbar()
         initObserve()
         initListener()
+    }
+
+    private fun initToolbar() {
+        binding.toolbar.tbBase.setNavigationOnClickListener { onBackPressed() }
     }
 
     private fun setImagePreview() = with(binding) {

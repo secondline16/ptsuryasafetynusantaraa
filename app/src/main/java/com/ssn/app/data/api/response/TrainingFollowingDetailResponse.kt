@@ -19,7 +19,7 @@ data class TrainingFollowingDetailResponse(
     val trainingEndDate: String? = null,
     @SerializedName("trainer_name")
     val trainerName: String? = null,
-    @SerializedName("training_status")
+    @SerializedName("status")
     val trainingStatus: String? = null,
     @SerializedName("trainer_cv")
     val trainerCv: String? = null,

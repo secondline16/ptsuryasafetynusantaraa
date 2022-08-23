@@ -32,13 +32,18 @@ class TrainingIndexFragment : Fragment(R.layout.fragment_training_index) {
         initRecyclerView()
         initObserve()
         initListener()
+        fetchData()
     }
 
     private fun initListener() {
         binding.root.setOnRefreshListener {
-            isRefresh = true
-            viewModel.getTrainingList()
+            fetchData(refresh = true)
         }
+    }
+
+    private fun fetchData(refresh: Boolean = false) {
+        isRefresh = refresh
+        viewModel.getTrainingList()
     }
 
     private fun initRecyclerView() {
