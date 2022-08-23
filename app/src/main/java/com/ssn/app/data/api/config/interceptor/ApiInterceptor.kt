@@ -11,17 +11,13 @@ class ApiInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()
         val originalHttpUrl = original.url
-
         val url = originalHttpUrl.newBuilder().build()
-
         val bearerToken = SharedPrefProvider.getUser().bearerToken
-
         val requestBuilder = original.newBuilder().apply {
             addHeader(name = "Authorization", value = "Bearer $bearerToken")
             addHeader(name = "Content-Type", value = "application/json")
             url(url)
         }
-
         val request = requestBuilder.build()
         return chain.proceed(request)
     }

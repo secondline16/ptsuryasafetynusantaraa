@@ -13,4 +13,9 @@
         <item name="android:statusBarColor" >@color/black</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.CardView.Secondary" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/cardview_dark_background</item>
+    </style>
+
 </resources>

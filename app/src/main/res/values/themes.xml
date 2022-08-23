@@ -51,4 +51,8 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="Theme.CardView.Secondary" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/light_gray</item>
+    </style>
+
 </resources>
