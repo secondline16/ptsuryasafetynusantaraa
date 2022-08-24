@@ -15,6 +15,7 @@ import com.canhub.cropper.CropImageContract
 import com.canhub.cropper.CropImageView
 import com.canhub.cropper.options
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.permissionx.guolindev.PermissionX
 import com.ssn.app.R
 import com.ssn.app.common.PreviewImageDialog
@@ -35,11 +36,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private val viewModel: ProfileViewModel by viewModels()
     private var avatarUrl: String? = null
+    private var isUpdateAvatar: Boolean = false
+    private var snackBarAvatarUpdate: Snackbar? = null
 
     private val cropImage = registerForActivityResult(CropImageContract()) { result ->
         if (result == null) return@registerForActivityResult
         if (result.isSuccessful) {
             result.getUriFilePath(requireContext())?.let { path ->
+                isUpdateAvatar = true
                 viewModel.updateAvatar(File(path))
             }
         }
@@ -58,6 +62,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         initObserve()
         initListener()
+        viewModel.getProfile(fetchNetwork = savedInstanceState == null)
     }
 
     private fun initListener() = with(binding) {
@@ -78,10 +83,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun showImagePreviewDialog() {
-        avatarUrl?.let { url ->
-            PreviewImageDialog.newInstance(url).also { dialog ->
-                dialog.show(childFragmentManager, PreviewImageDialog.TAG)
-            }
+        val url = avatarUrl
+        if (url.isNullOrEmpty()) return
+        PreviewImageDialog.newInstance(url).also { dialog ->
+            dialog.show(childFragmentManager, PreviewImageDialog.TAG)
         }
     }
 
@@ -139,6 +144,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.messageChannel.collect { message ->
+                    binding.root.showSnackBar(message)
+                }
+            }
+        }
     }
 
     private fun handleLogoutViewState(uiState: UiState<Any?>) {
@@ -155,9 +168,30 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun handleProfileViewState(uiState: UiState<User>) {
         when (uiState) {
-            is UiState.Loading -> uiState.data?.let(::bindData)
-            is UiState.Error -> binding.root.showSnackBar(uiState.e.message.orEmpty())
-            is UiState.Success -> bindData(uiState.data)
+            is UiState.Loading -> {
+                if (isUpdateAvatar) {
+                    binding.root.showSnackBar(
+                        message = "Uploading image...",
+                        length = Snackbar.LENGTH_INDEFINITE
+                    )?.let { snackBar -> snackBarAvatarUpdate = snackBar }
+                } else {
+                    uiState.data?.let(::bindData)
+                }
+            }
+            is UiState.Error -> {
+                if (isUpdateAvatar) {
+                    snackBarAvatarUpdate?.dismiss()
+                    isUpdateAvatar = false
+                }
+                binding.root.showSnackBar(uiState.e.message.orEmpty())
+            }
+            is UiState.Success -> {
+                if (isUpdateAvatar) {
+                    snackBarAvatarUpdate?.dismiss()
+                    isUpdateAvatar = false
+                }
+                bindData(uiState.data)
+            }
         }
     }
 

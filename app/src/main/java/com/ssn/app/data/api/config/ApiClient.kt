@@ -90,7 +90,17 @@ object ApiClient {
         })
     }
 
-    suspend fun <ResponseType> Response<BaseResponse<ResponseType>>.fetchResult(
+    suspend fun <ResponseType> ApiService.safeCall(
+        onEndpoint: suspend ApiService.() -> Response<BaseResponse<ResponseType>>,
+        onSuccess: suspend (BaseResponse<ResponseType>) -> Unit,
+        onError: suspend (Throwable) -> Unit
+    ) = try {
+        onEndpoint.invoke(this).fetchResult(onSuccess = onSuccess, onError = onError)
+    } catch (e: Exception) {
+        onError.invoke(e)
+    }
+
+    private suspend fun <ResponseType> Response<BaseResponse<ResponseType>>.fetchResult(
         onSuccess: suspend (BaseResponse<ResponseType>) -> Unit,
         onError: suspend (Throwable) -> Unit
     ) {

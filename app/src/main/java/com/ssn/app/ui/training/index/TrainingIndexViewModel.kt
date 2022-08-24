@@ -3,7 +3,7 @@ package com.ssn.app.ui.training.index
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssn.app.data.api.config.ApiClient
-import com.ssn.app.data.api.config.ApiClient.fetchResult
+import com.ssn.app.data.api.config.ApiClient.safeCall
 import com.ssn.app.data.api.response.TrainingResponse
 import com.ssn.app.model.Training
 import com.ssn.app.vo.UiState
@@ -21,7 +21,8 @@ class TrainingIndexViewModel : ViewModel() {
 
     fun getTrainingList() = viewModelScope.launch {
         _trainingIndexViewState.send(UiState.Loading())
-        ApiClient.getApiService().getTrainingList().fetchResult(
+        ApiClient.getApiService().safeCall(
+            onEndpoint = { getTrainingList() },
             onSuccess = { response ->
                 val trainingList = response.data?.map(TrainingResponse::asDomain).orEmpty()
                 _trainingIndexViewState.send(UiState.Success(trainingList))

@@ -26,9 +26,15 @@ fun View.showSnackBar(@StringRes message: Int) {
     showSnackBar(context.getString(message))
 }
 
-fun View.showSnackBar(message: String) {
-    if (message.isEmpty()) return
-    Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
+fun View.showSnackBar(
+    message: String,
+    length: Int = Snackbar.LENGTH_SHORT,
+    showImmediate: Boolean = true
+): Snackbar? {
+    if (message.isEmpty()) return null
+    val snackBar = Snackbar.make(this, message, length)
+    if (showImmediate) snackBar.show()
+    return snackBar
 }
 
 fun View.delayOnLifecycle(

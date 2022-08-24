@@ -189,7 +189,7 @@ class TrainingUploadCertificationActivity : AppCompatActivity() {
 
     private fun initObserve() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.uploadCertificateViewState.collect { viewState ->
                     handleUploadCertificateViewState(viewState)
                 }

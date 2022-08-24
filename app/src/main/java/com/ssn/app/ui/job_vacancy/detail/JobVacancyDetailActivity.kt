@@ -44,7 +44,7 @@ class JobVacancyDetailActivity : AppCompatActivity() {
 
     private fun initObserve() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.jobVacancyDetailViewState.collect { viewState ->
                     handleJobVacancyDetailViewState(viewState)
                 }

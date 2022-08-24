@@ -3,7 +3,7 @@ package com.ssn.app.ui.training_following.upload_certification
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssn.app.data.api.config.ApiClient
-import com.ssn.app.data.api.config.ApiClient.fetchResult
+import com.ssn.app.data.api.config.ApiClient.safeCall
 import com.ssn.app.vo.UiState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -35,22 +35,27 @@ class TrainingUploadCertificationViewModel : ViewModel() {
         optionalFile: File?
     ) = viewModelScope.launch {
         _uploadCertificateViewState.send(UiState.Loading())
-        ApiClient.getApiService().uploadTrainingRequirement(
-            cv = cv.run { MultipartBody.Part.createFormData("cv", name, asRequestBody()) },
-            ktp = ktp.run { MultipartBody.Part.createFormData("ktp", name, asRequestBody()) },
-            ijazah = ijazah.run {
-                MultipartBody.Part.createFormData("ijazah", name, asRequestBody())
+        ApiClient.getApiService().safeCall(
+            onEndpoint = {
+                uploadTrainingRequirement(
+                    cv = cv.run { MultipartBody.Part.createFormData("cv", name, asRequestBody()) },
+                    ktp = ktp.run {
+                        MultipartBody.Part.createFormData("ktp", name, asRequestBody())
+                    },
+                    ijazah = ijazah.run {
+                        MultipartBody.Part.createFormData("ijazah", name, asRequestBody())
+                    },
+                    workExperience = workExperience.run {
+                        MultipartBody.Part.createFormData("work_experience", name, asRequestBody())
+                    },
+                    portfolio = portfolio.run {
+                        MultipartBody.Part.createFormData("portfolio", name, asRequestBody())
+                    },
+                    optionalFile = optionalFile?.run {
+                        MultipartBody.Part.createFormData("optional_file", name, asRequestBody())
+                    }
+                )
             },
-            workExperience = workExperience.run {
-                MultipartBody.Part.createFormData("work_experience", name, asRequestBody())
-            },
-            portfolio = portfolio.run {
-                MultipartBody.Part.createFormData("portfolio", name, asRequestBody())
-            },
-            optionalFile = optionalFile?.run {
-                MultipartBody.Part.createFormData("optional_file", name, asRequestBody())
-            }
-        ).fetchResult(
             onSuccess = { response ->
                 _uploadCertificateViewState.send(UiState.Success(response.meta?.message.orEmpty()))
             },

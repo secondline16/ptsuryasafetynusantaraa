@@ -79,7 +79,7 @@ class TrainingRegisterActivity : AppCompatActivity() {
 
     private fun initObserve() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.registerTrainingViewState.collect { viewState ->
                     handleRegisterTrainingViewState(viewState)
                 }

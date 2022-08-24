@@ -59,7 +59,7 @@ class TrainingDetailActivity : AppCompatActivity() {
 
     private fun initObserve() {
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED) {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
                 viewModel.trainingDetailViewState.collect { viewState ->
                     handleTrainingDetailViewState(viewState)
                 }

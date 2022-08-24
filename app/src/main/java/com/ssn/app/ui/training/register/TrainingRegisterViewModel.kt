@@ -3,7 +3,7 @@ package com.ssn.app.ui.training.register
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssn.app.data.api.config.ApiClient
-import com.ssn.app.data.api.config.ApiClient.fetchResult
+import com.ssn.app.data.api.config.ApiClient.safeCall
 import com.ssn.app.vo.UiState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -26,7 +26,8 @@ class TrainingRegisterViewModel : ViewModel() {
             invoice.asRequestBody()
         )
         _registerTrainingViewState.send(UiState.Loading())
-        ApiClient.getApiService().registerTraining(trainingId, invoiceMultipart).fetchResult(
+        ApiClient.getApiService().safeCall(
+            onEndpoint = { registerTraining(trainingId, invoiceMultipart) },
             onSuccess = { response ->
                 _registerTrainingViewState.send(UiState.Success(response.meta?.message.orEmpty()))
             },

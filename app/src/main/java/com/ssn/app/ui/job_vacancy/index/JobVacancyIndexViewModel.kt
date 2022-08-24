@@ -3,7 +3,7 @@ package com.ssn.app.ui.job_vacancy.index
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ssn.app.data.api.config.ApiClient
-import com.ssn.app.data.api.config.ApiClient.fetchResult
+import com.ssn.app.data.api.config.ApiClient.safeCall
 import com.ssn.app.data.api.response.JobVacancyResponse
 import com.ssn.app.model.JobVacancy
 import com.ssn.app.vo.UiState
@@ -21,7 +21,8 @@ class JobVacancyIndexViewModel : ViewModel() {
 
     fun getJobVacancyList() = viewModelScope.launch {
         _jobVacancyIndexViewState.send(UiState.Loading())
-        ApiClient.getApiService().getJobVacancyList().fetchResult(
+        ApiClient.getApiService().safeCall(
+            onEndpoint = { getJobVacancyList() },
             onSuccess = { response ->
                 val jobVacancyList = response.data?.map(JobVacancyResponse::asDomain).orEmpty()
                 _jobVacancyIndexViewState.send(UiState.Success(jobVacancyList))
