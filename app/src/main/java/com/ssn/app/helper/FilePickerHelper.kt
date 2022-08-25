@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.webkit.MimeTypeMap
-import androidx.annotation.RequiresPermission
 import androidx.core.content.FileProvider
 import com.ssn.app.BuildConfig
 import java.io.File

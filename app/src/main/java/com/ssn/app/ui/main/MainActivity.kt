@@ -3,8 +3,8 @@ package com.ssn.app.ui.main
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
-import androidx.core.view.ViewCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
@@ -26,18 +26,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initToolbar()
         initNavigation()
-    }
-
-    private fun initToolbar() {
-        binding.toolbar.tbBase.setNavigationOnClickListener { onBackPressed() }
     }
 
     private fun initNavigation() = with(binding) {
         nvMenu.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.toolbar.tbBase.title = destination.label
+            toolbar.tbBase.title = destination.label
+            when (destination.id) {
+                R.id.aboutFragment,
+                R.id.trainingIndexFragment,
+                R.id.trainingFollowingIndexFragment,
+                R.id.profileFragment,
+                R.id.jobVacancyIndexFragment
+                -> {
+                    toolbar.tbBase.apply {
+                        navigationIcon = ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_hamburger)
+                        setNavigationOnClickListener { showDrawer() }
+                    }
+                }
+            }
         }
     }
 
@@ -49,6 +57,14 @@ class MainActivity : AppCompatActivity() {
             drlParent.closeDrawer(GravityCompat.START)
         } else {
             if (!navController.navigateUp()) super.onBackPressed()
+        }
+    }
+
+    private fun showDrawer() = with(binding.drlParent) {
+        if (isDrawerOpen(GravityCompat.START)) {
+            closeDrawer(GravityCompat.START)
+        } else {
+            openDrawer(GravityCompat.START)
         }
     }
 

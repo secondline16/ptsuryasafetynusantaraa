@@ -38,11 +38,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingStatus"
-                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -73,7 +73,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingName"
-                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -91,7 +90,6 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingDetail"
-                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -115,7 +113,6 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvTrainerName"
-                    style="@style/Text.Style.Default"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -160,11 +157,11 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCertificationStatus"
-                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 tools:text="content" />
 
             <com.google.android.material.button.MaterialButton
