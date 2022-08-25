@@ -29,10 +29,8 @@ class JobVacancyDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         initToolbar()
         processIntentExtras()
-        if (savedInstanceState == null) {
-            viewModel.getJobVacancyDetail(id)
-        }
         initObserve()
+        viewModel.getJobVacancyDetail(id)
     }
 
     private fun initToolbar() {

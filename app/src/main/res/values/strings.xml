@@ -64,5 +64,6 @@
     <string name="label_moto_content">Meningkatkan kualitas layanan kami dari waktu ke waktu dan selalu berusaha untuk memberikan semua yang terbaik untuk klien kami, kepercayaan anda adalah kebanggaan kami</string>
     <string name="label_jasa_pelatihan_content">a. Training of Kemnaker RI\nb. Internal Training\nc. Training Bnsp\nd. Consulting Certification</string>
     <string name="label_kontak_kami_content">Alamat : Makam 03/02, Rembang, Purbalingga, Jawa Tengah\nKontak : +62822–5513–6302\nEmail : suryasafety.nusantara@gmail.com</string>
-    <string name="label_waiting">Waiting...</string>
+    <string name="label_waiting">Waiting…</string>
+    <style name="label_form_persyaratan_sertifikasi">Form Persyaratan Sertifikasi</style>
 </resources>

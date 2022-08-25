@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil.load
 import com.permissionx.guolindev.PermissionX
+import com.ssn.app.R
 import com.ssn.app.databinding.ActivityUploadCertificationBinding
 import com.ssn.app.extension.openActivity
 import com.ssn.app.extension.setDocumentIcon
@@ -77,7 +78,10 @@ class TrainingUploadCertificationActivity : AppCompatActivity() {
     }
 
     private fun initToolbar() {
-        binding.toolbar.tbBase.setNavigationOnClickListener { onBackPressed() }
+        binding.toolbar.tbBase.apply {
+            title = getString(R.string.label_upload_persyaratan_sertifikasi)
+            setNavigationOnClickListener { onBackPressed() }
+        }
     }
 
     private fun setImagePreview() = with(binding) {

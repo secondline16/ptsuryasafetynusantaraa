@@ -33,11 +33,9 @@ class TrainingDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         initToolbar()
         processIntentExtras()
-        if (savedInstanceState == null) {
-            viewModel.getTrainingDetail(id)
-        }
         initObserve()
         initListener()
+        viewModel.getTrainingDetail(id)
     }
 
     private fun initToolbar() {

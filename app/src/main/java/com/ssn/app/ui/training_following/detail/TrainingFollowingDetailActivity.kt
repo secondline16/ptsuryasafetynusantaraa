@@ -38,11 +38,9 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         initToolbar()
         processIntentExtras()
-        if (savedInstanceState == null) {
-            viewModel.getTrainingFollowingDetail(id)
-        }
         initObserve()
         initListener()
+        viewModel.getTrainingFollowingDetail(id)
     }
 
     private fun initListener() = with(binding) {
@@ -72,8 +70,7 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     }
 
     private fun openWhatsappGroup() {
-//        val whatsappUri = trainingFollowingDetail?.whatsappGroup.orEmpty()
-        val whatsappUri = "wa.me/6287700152265"
+        val whatsappUri = trainingFollowingDetail?.whatsappGroup.orEmpty()
         if (whatsappUri.isEmpty()) return
         val destinationIntent = Intent(Intent.ACTION_VIEW, Uri.parse(whatsappUri))
         Intent.createChooser(destinationIntent, "Open").also { intent ->
@@ -82,8 +79,7 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     }
 
     private fun downloadCompetencyCertificate() = with(binding) {
-        // val url = trainingFollowingDetail?.competenceCertificate
-        val url = "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547__480.jpg"
+        val url = trainingFollowingDetail?.competenceCertificate.orEmpty()
         lifecycleScope.handleDownload(
             url = url,
             onWaiting = {
@@ -111,8 +107,7 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     }
 
     private fun downloadTrainingCertificate() = with(binding) {
-        // val url = trainingFollowingDetail?.trainingCertificate
-        val url = "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547__480.jpg"
+        val url = trainingFollowingDetail?.trainingCertificate.orEmpty()
         lifecycleScope.handleDownload(
             url = url,
             onWaiting = {
@@ -140,8 +135,7 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     }
 
     private fun downloadCvTrainer() = with(binding) {
-        // val url = trainingFollowingDetail?.trainerCv
-        val url = "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547__480.jpg"
+        val url = trainingFollowingDetail?.trainerCv.orEmpty()
         lifecycleScope.handleDownload(
             url = url,
             onWaiting = { btnTrainerCv.setState(false, getString(R.string.label_waiting)) },
@@ -170,8 +164,7 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     }
 
     private fun downloadTrainingBook() = with(binding) {
-        // val url = trainingFollowingDetail?.trainingBook
-        val url = "https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547__480.jpg"
+        val url = trainingFollowingDetail?.trainingBook.orEmpty()
         lifecycleScope.handleDownload(
             url = url,
             onWaiting = { btnTrainingBook.setState(false, getString(R.string.label_waiting)) },

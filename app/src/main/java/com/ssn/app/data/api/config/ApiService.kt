@@ -84,7 +84,7 @@ interface ApiService {
     ): Response<BaseResponse<TrainingFollowingDetailResponse>>
 
     @Multipart
-    @POST("training/requirement")
+    @POST("training/requirements")
     suspend fun uploadTrainingRequirement(
         @Part cv: MultipartBody.Part,
         @Part ktp: MultipartBody.Part,
