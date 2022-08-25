@@ -84,7 +84,9 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     private fun openWhatsappGroup() {
         val whatsappUri = trainingFollowingDetail?.whatsappGroup.orEmpty()
         if (whatsappUri.isEmpty()) return
-        val destinationIntent = Intent(Intent.ACTION_VIEW, Uri.parse(whatsappUri))
+        val destinationIntent = Intent(Intent.ACTION_VIEW, Uri.parse(whatsappUri)).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
         Intent.createChooser(destinationIntent, "Open").also { intent ->
             startActivity(intent)
         }
