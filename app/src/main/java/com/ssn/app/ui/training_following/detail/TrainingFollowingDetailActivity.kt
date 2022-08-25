@@ -5,6 +5,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
@@ -20,6 +22,7 @@ import com.ssn.app.helper.FileHelper.open
 import com.ssn.app.helper.Helper.handleDownload
 import com.ssn.app.helper.Helper.storage
 import com.ssn.app.model.TrainingFollowingDetail
+import com.ssn.app.ui.profile.edit.EditProfileActivity
 import com.ssn.app.ui.training_following.upload_certification.TrainingUploadCertificationActivity
 import com.ssn.app.vo.UiState
 import kotlinx.coroutines.launch
@@ -31,6 +34,15 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     private var id: Int = 0
 
     private var trainingFollowingDetail: TrainingFollowingDetail? = null
+
+    private val activityResultContracts = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { activityResult: ActivityResult? ->
+        if (activityResult == null) return@registerForActivityResult
+        if (activityResult.resultCode == TrainingUploadCertificationActivity.RESULT_CODE_SUCCESS) {
+            viewModel.getTrainingFollowingDetail(id)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -184,7 +196,7 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
     }
 
     private fun navigateToUploadCertificationRequirement() {
-        TrainingUploadCertificationActivity.start(this)
+        activityResultContracts.launch(TrainingUploadCertificationActivity.getIntent(this))
     }
 
     private fun initToolbar() {

@@ -1,6 +1,7 @@
 package com.ssn.app.ui.training_following.upload_certification
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.result.ActivityResult
@@ -15,7 +16,6 @@ import coil.load
 import com.permissionx.guolindev.PermissionX
 import com.ssn.app.R
 import com.ssn.app.databinding.ActivityUploadCertificationBinding
-import com.ssn.app.extension.openActivity
 import com.ssn.app.extension.setDocumentIcon
 import com.ssn.app.extension.showSnackBar
 import com.ssn.app.helper.FilePickerHelper
@@ -246,6 +246,7 @@ class TrainingUploadCertificationActivity : AppCompatActivity() {
             is UiState.Error -> binding.root.showSnackBar(uiState.e.message.orEmpty())
             is UiState.Success -> {
                 binding.root.showSnackBar(uiState.data)
+                setResult(RESULT_CODE_SUCCESS)
                 finish()
             }
         }
@@ -335,8 +336,8 @@ class TrainingUploadCertificationActivity : AppCompatActivity() {
         private const val TYPE_WORK_EXPERIENCE = 3
         private const val TYPE_PORTFOLIO = 4
         private const val TYPE_OPTIONAL_FILE = 5
-        fun start(context: Context) {
-            context.openActivity(TrainingUploadCertificationActivity::class.java)
-        }
+        const val RESULT_CODE_SUCCESS = 808
+        fun getIntent(context: Context): Intent =
+            Intent(context, TrainingUploadCertificationActivity::class.java)
     }
 }
