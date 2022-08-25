@@ -23,8 +23,6 @@ import com.ssn.app.model.TrainingFollowingDetail
 import com.ssn.app.ui.training_following.upload_certification.TrainingUploadCertificationActivity
 import com.ssn.app.vo.UiState
 import kotlinx.coroutines.launch
-import zlc.season.downloadx.State
-import zlc.season.rxdownload4.file
 
 class TrainingFollowingDetailActivity : AppCompatActivity() {
 
