@@ -12,6 +12,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/black</item>
         <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">@style/TextView.Default.Style</item>
+    </style>
+
+    <style name="TextView.Default.Style" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorPrimary">@color/black</item>
     </style>
 
     <style name="Theme.PTSuryaSafetyNusantara.Splash" parent="Theme.PTSuryaSafetyNusantara">

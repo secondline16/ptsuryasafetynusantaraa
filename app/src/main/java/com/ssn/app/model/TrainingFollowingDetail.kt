@@ -13,5 +13,6 @@ data class TrainingFollowingDetail(
     val trainingBook: String,
     val requirementStatus: String,
     val trainingCertificate: String,
-    val competenceCertificate: String
+    val competenceCertificate: String,
+    val whatsappGroup: String
 )

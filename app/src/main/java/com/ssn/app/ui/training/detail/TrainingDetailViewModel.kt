@@ -8,13 +8,16 @@ import com.ssn.app.data.api.config.ApiClient.safeCall
 import com.ssn.app.model.TrainingDetail
 import com.ssn.app.vo.UiState
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class TrainingDetailViewModel : ViewModel() {
 
-    private val _trainingDetailViewState: Channel<UiState<TrainingDetail>> = Channel(capacity = 1)
+    private val _trainingDetailViewState: Channel<UiState<TrainingDetail>> = Channel()
     val trainingDetailViewState = _trainingDetailViewState.receiveAsFlow()
+        .stateIn(viewModelScope, SharingStarted.Lazily, UiState.Loading())
 
     fun getTrainingDetail(id: Int) = viewModelScope.launch {
         _trainingDetailViewState.send(UiState.Loading())

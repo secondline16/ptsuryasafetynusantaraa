@@ -86,6 +86,9 @@ dependencies {
     // RxDownload
     implementation "com.github.ssseasonnn:RxDownload:1.1.4"
 
+    // Coroutine Download
+    implementation "com.github.ssseasonnn:DownloadX:1.0.1"
+
     // Crop Image
     implementation "com.github.CanHub:Android-Image-Cropper:4.3.1"
 

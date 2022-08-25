@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.webkit.MimeTypeMap
+import androidx.annotation.RequiresPermission
 import androidx.core.content.FileProvider
 import com.ssn.app.BuildConfig
 import java.io.File
@@ -59,13 +60,14 @@ object FilePickerHelper {
             createNewFile()
             deleteOnExit()
         }
-
-        return FileProvider.getUriForFile(
-            applicationContext,
-            "${BuildConfig.APPLICATION_ID}.provider",
-            tmpFile
-        )
+        return tmpFile.getUri(applicationContext)
     }
+
+    fun File.getUri(context: Context): Uri = FileProvider.getUriForFile(
+        context.applicationContext,
+        "${BuildConfig.APPLICATION_ID}.provider",
+        this
+    )
 
     fun Uri?.doIfImage(context: Context, action: (File) -> Unit, onNotImage: () -> Unit) {
         this?.let { uri ->

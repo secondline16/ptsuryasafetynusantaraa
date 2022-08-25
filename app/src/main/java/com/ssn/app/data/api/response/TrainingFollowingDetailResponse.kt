@@ -30,7 +30,9 @@ data class TrainingFollowingDetailResponse(
     @SerializedName("training_certificate")
     val trainingCertificate: String? = null,
     @SerializedName("competence_certificate")
-    val competenceCertificate: String? = null
+    val competenceCertificate: String? = null,
+    @SerializedName("whatsapp_group")
+    val whatsAppGroup: String? = null
 ) {
     fun asDomain(): TrainingFollowingDetail = TrainingFollowingDetail(
         id = id.orZero(),
@@ -45,6 +47,7 @@ data class TrainingFollowingDetailResponse(
         requirementStatus = requirementStatus.orEmpty(),
         trainingCertificate = trainingCertificate.orEmpty(),
         competenceCertificate = competenceCertificate.orEmpty(),
-        trainingName = trainingName.orEmpty()
+        trainingName = trainingName.orEmpty(),
+        whatsappGroup = whatsAppGroup.orEmpty()
     )
 }

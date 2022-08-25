@@ -19,6 +19,7 @@ import com.ssn.app.extension.setDocumentIcon
 import com.ssn.app.extension.showSnackBar
 import com.ssn.app.helper.FilePickerHelper
 import com.ssn.app.helper.FilePickerHelper.doIfImage
+import com.ssn.app.helper.FilePickerHelper.getTempFileUri
 import com.ssn.app.helper.Helper.camera
 import com.ssn.app.helper.Helper.showImagePickerSourceDialog
 import com.ssn.app.helper.Helper.storage
@@ -255,41 +256,48 @@ class TrainingUploadCertificationActivity : AppCompatActivity() {
         btnPickWorkExperience.isEnabled = !show
         btnPickPortfolio.isEnabled = !show
         btnPickOptionalFile.isEnabled = !show
+        btnUpload.isVisible = !show
     }
 
     private fun initListener() = with(binding) {
         btnPickCv.setOnClickListener {
-            showFilePickerDialog(TYPE_CV) {
+            showFilePickerDialog(TYPE_CV) { uri ->
+                selectedCvUri = uri
                 cameraResultLauncher.launch(selectedCvUri)
             }
         }
 
         btnPickKtp.setOnClickListener {
-            showFilePickerDialog(TYPE_KTP) {
+            showFilePickerDialog(TYPE_KTP) { uri ->
+                selectedKtpUri = uri
                 cameraResultLauncher.launch(selectedKtpUri)
             }
         }
 
         btnPickIjazah.setOnClickListener {
-            showFilePickerDialog(TYPE_IJAZAH) {
+            showFilePickerDialog(TYPE_IJAZAH) { uri ->
+                selectedIjazahUri = uri
                 cameraResultLauncher.launch(selectedIjazahUri)
             }
         }
 
         btnPickWorkExperience.setOnClickListener {
-            showFilePickerDialog(TYPE_WORK_EXPERIENCE) {
+            showFilePickerDialog(TYPE_WORK_EXPERIENCE) { uri ->
+                selectedWorkExperienceUri = uri
                 cameraResultLauncher.launch(selectedWorkExperienceUri)
             }
         }
 
         btnPickPortfolio.setOnClickListener {
-            showFilePickerDialog(TYPE_PORTFOLIO) {
+            showFilePickerDialog(TYPE_PORTFOLIO) { uri ->
+                selectedPortfolioUri = uri
                 cameraResultLauncher.launch(selectedPortfolioUri)
             }
         }
 
         btnPickOptionalFile.setOnClickListener {
-            showFilePickerDialog(TYPE_OPTIONAL_FILE) {
+            showFilePickerDialog(TYPE_OPTIONAL_FILE) { uri ->
+                selectedOptionalUri = uri
                 cameraResultLauncher.launch(selectedOptionalUri)
             }
         }
@@ -299,12 +307,12 @@ class TrainingUploadCertificationActivity : AppCompatActivity() {
         }
     }
 
-    private fun showFilePickerDialog(pickerType: Int, onCamera: () -> Unit) {
+    private fun showFilePickerDialog(pickerType: Int, onCamera: (Uri) -> Unit) {
         showImagePickerSourceDialog(
             onCamera = {
                 checkCameraPermission {
                     pickFileType = pickerType
-                    onCamera.invoke()
+                    onCamera.invoke(getTempFileUri(format = FilePickerHelper.EXTENSION_PNG))
                 }
             },
             onFile = {
