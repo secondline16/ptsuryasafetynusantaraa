@@ -12,8 +12,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import coil.load
 import com.permissionx.guolindev.PermissionX
 import com.ssn.app.R
+import com.ssn.app.common.PreviewImageDialog
 import com.ssn.app.databinding.ActivityTrainingFollowingDetailBinding
 import com.ssn.app.extension.openActivity
 import com.ssn.app.extension.orDash
@@ -22,7 +24,6 @@ import com.ssn.app.helper.FileHelper.open
 import com.ssn.app.helper.Helper.handleDownload
 import com.ssn.app.helper.Helper.storage
 import com.ssn.app.model.TrainingFollowingDetail
-import com.ssn.app.ui.profile.edit.EditProfileActivity
 import com.ssn.app.ui.training_following.upload_certification.TrainingUploadCertificationActivity
 import com.ssn.app.vo.UiState
 import kotlinx.coroutines.launch
@@ -55,7 +56,19 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
         viewModel.getTrainingFollowingDetail(id)
     }
 
+    private fun showImagePreviewDialog() {
+        val url = trainingFollowingDetail?.trainingImage.orEmpty()
+        if (url.isEmpty()) return
+        PreviewImageDialog.newInstance(url).also { dialog ->
+            dialog.show(supportFragmentManager, PreviewImageDialog.TAG)
+        }
+    }
+
     private fun initListener() = with(binding) {
+        ivTraining.setOnClickListener {
+            showImagePreviewDialog()
+        }
+
         btnTrainingBook.setOnClickListener {
             downloadTrainingBook()
         }
@@ -107,15 +120,17 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
                 btnCompetencyCertification.setState(false, progressStr)
             },
             onSuccess = { file ->
-                btnCompetencyCertification.setState(
-                    true,
-                    getString(R.string.label_sertifikasi_kompetensi)
-                )
                 checkStoragePermission { file?.open(this@TrainingFollowingDetailActivity) }
             },
             onFailed = { root.showSnackBar("Failed to download") },
             onError = { throwable ->
                 root.showSnackBar("Error : ${throwable.message}")
+            },
+            onComplete = {
+                btnCompetencyCertification.setState(
+                    true,
+                    getString(R.string.label_sertifikasi_kompetensi)
+                )
             }
         )
     }
@@ -135,15 +150,17 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
                 btnTrainingCertification.setState(false, progressStr)
             },
             onSuccess = { file ->
-                btnTrainingCertification.setState(
-                    true,
-                    getString(R.string.label_sertifikasi_pelatihan)
-                )
                 checkStoragePermission { file?.open(this@TrainingFollowingDetailActivity) }
             },
             onFailed = { root.showSnackBar("Failed to download") },
             onError = { throwable ->
                 root.showSnackBar("Error : ${throwable.message}")
+            },
+            onComplete = {
+                btnTrainingCertification.setState(
+                    true,
+                    getString(R.string.label_sertifikasi_pelatihan)
+                )
             }
         )
     }
@@ -164,6 +181,9 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
             onFailed = { root.showSnackBar("Failed to download") },
             onError = { throwable ->
                 root.showSnackBar("Error : ${throwable.message}")
+            },
+            onComplete = {
+                btnTrainerCv.setState(true, getString(R.string.label_cv))
             }
         )
     }
@@ -187,12 +207,14 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
                 btnTrainingBook.setState(false, progressStr)
             },
             onSuccess = { file ->
-                btnTrainingBook.setState(true, getString(R.string.label_materi_pelatihan))
                 checkStoragePermission { file?.open(this@TrainingFollowingDetailActivity) }
             },
             onFailed = { root.showSnackBar("Failed to download") },
             onError = { throwable ->
                 root.showSnackBar("Error : ${throwable.message}")
+            },
+            onComplete = {
+                btnTrainingBook.setState(true, getString(R.string.label_materi_pelatihan))
             }
         )
     }
@@ -232,6 +254,7 @@ class TrainingFollowingDetailActivity : AppCompatActivity() {
 
     private fun bindData(data: TrainingFollowingDetail) = with(binding) {
         trainingFollowingDetail = data
+        ivTraining.load(data.trainingImage)
         tvTrainingName.text = data.trainingName.orDash()
         tvTrainingDetail.text = data.trainingDescription.orDash()
         tvTrainingStatus.text = data.trainingStatus

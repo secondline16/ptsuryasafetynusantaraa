@@ -13,9 +13,9 @@ data class JobVacancyDetailResponse(
     val jobPosition: String? = null,
     @SerializedName("deadline")
     val deadline: String? = null,
-    @SerializedName("description")
+    @SerializedName("job_description")
     val description: String? = null,
-    @SerializedName("requirements")
+    @SerializedName("job_requirements")
     val requirements: String? = null
 ) {
     fun asDomain(): JobVacancyDetail = JobVacancyDetail(

@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import coil.load
 import com.ssn.app.R
+import com.ssn.app.common.PreviewImageDialog
 import com.ssn.app.databinding.ActivityTrainingDetailBinding
 import com.ssn.app.extension.openActivity
 import com.ssn.app.extension.orDash
@@ -26,6 +27,8 @@ class TrainingDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTrainingDetailBinding
     private val viewModel: TrainingDetailViewModel by viewModels()
     private var id: Int = 0
+
+    private var trainingDetail: TrainingDetail? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,9 +48,21 @@ class TrainingDetailActivity : AppCompatActivity() {
         }
     }
 
+    private fun showImagePreviewDialog() {
+        val url = trainingDetail?.trainingImage.orEmpty()
+        if (url.isEmpty()) return
+        PreviewImageDialog.newInstance(url).also { dialog ->
+            dialog.show(supportFragmentManager, PreviewImageDialog.TAG)
+        }
+    }
+
     private fun initListener() = with(binding) {
         btnRegisterTraining.setOnClickListener {
             navigateToRegisterTraining()
+        }
+
+        ivTraining.setOnClickListener {
+            showImagePreviewDialog()
         }
     }
 
@@ -74,6 +89,7 @@ class TrainingDetailActivity : AppCompatActivity() {
     }
 
     private fun bindData(data: TrainingDetail) = with(binding) {
+        trainingDetail = data
         ivTraining.load(data.trainingImage)
         tvTrainingName.text = data.trainingName.orDash()
         tvTrainingDetail.text = data.trainingDescription.orDash()

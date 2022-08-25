@@ -123,6 +123,7 @@ object Helper {
         onFailed: () -> Unit,
         onSuccess: (File?) -> Unit,
         onDownloading: (Progress) -> Unit,
+        onComplete: () -> Unit,
         onStopped: (() -> Unit)? = null,
         onWaiting: (() -> Unit)? = null
     ) {
@@ -131,7 +132,7 @@ object Helper {
             val task = download(url)
             task.state()
                 .onStart { task.start() }
-                .onCompletion { task.stop() }
+                .onCompletion { task.stop(); onComplete.invoke() }
                 .catch { e -> onError.invoke(e) }
                 .distinctUntilChanged()
                 .onEach { state ->
