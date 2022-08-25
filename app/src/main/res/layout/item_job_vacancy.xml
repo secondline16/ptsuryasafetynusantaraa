@@ -16,12 +16,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvJobName"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Job Name" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvCompanyName"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -29,6 +31,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDeadline"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

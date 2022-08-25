@@ -27,6 +27,7 @@
                 tools:background="@color/gray" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -36,6 +37,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingName"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -43,6 +45,7 @@
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -52,6 +55,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingDetail"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -59,6 +63,7 @@
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -68,6 +73,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingSchedule"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -75,6 +81,7 @@
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -84,6 +91,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingPrice"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -91,6 +99,7 @@
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -100,6 +109,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingStatus"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

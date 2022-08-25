@@ -22,6 +22,7 @@
             android:paddingTop="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_nama_lowongan"
@@ -30,6 +31,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvJobVacancy"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -37,6 +39,7 @@
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -46,6 +49,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCompanyName"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -53,6 +57,7 @@
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -62,6 +67,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDetail"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -69,6 +75,7 @@
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -78,6 +85,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvRequirement"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -85,6 +93,7 @@
                 tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -94,6 +103,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDeadline"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

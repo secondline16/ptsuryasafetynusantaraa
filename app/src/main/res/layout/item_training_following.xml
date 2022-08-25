@@ -16,12 +16,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvName"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Training Name" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvStatus"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

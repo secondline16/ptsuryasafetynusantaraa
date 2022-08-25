@@ -23,6 +23,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvUsername"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -32,6 +33,7 @@
             tools:text="Username" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -41,12 +43,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvFullName"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             tools:text="Content" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -56,12 +60,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvEmail"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             tools:text="Content" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -71,12 +77,14 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvAddress"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
             tools:text="Content" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -86,6 +94,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPhoneNumber"
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"

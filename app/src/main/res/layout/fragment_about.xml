@@ -20,6 +20,7 @@
             app:srcCompat="@drawable/ic_ssn_logo" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -37,6 +38,7 @@
             app:contentPadding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_tentang_kami_content" />
@@ -44,6 +46,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -61,6 +64,7 @@
             app:contentPadding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_visi_misi_content" />
@@ -68,6 +72,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -85,6 +90,7 @@
             app:contentPadding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_moto_content" />
@@ -92,6 +98,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -109,6 +116,7 @@
             app:contentPadding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_jasa_pelatihan_content" />
@@ -116,6 +124,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.Style.Default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -133,6 +142,7 @@
             app:contentPadding="12dp">
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/label_kontak_kami_content" />

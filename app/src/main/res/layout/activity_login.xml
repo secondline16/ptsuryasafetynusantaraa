@@ -9,6 +9,7 @@
         layout="@layout/toolbar_base" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        style="@style/Text.Style.Default"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"

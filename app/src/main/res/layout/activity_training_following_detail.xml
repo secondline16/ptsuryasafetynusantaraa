@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <include
@@ -23,11 +23,12 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivTraining"
-                tools:background="@color/gray"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="150dp"
+                tools:background="@color/gray" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -37,13 +38,15 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingStatus"
-                tools:text="content"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -60,6 +63,7 @@
                 android:text="@string/label_join_grup" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -69,13 +73,15 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingName"
-                tools:text="content"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -85,13 +91,15 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTrainingDetail"
-                tools:text="content"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="content" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -107,12 +115,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvTrainerName"
-                    tools:text="content"
+                    style="@style/Text.Style.Default"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="content" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnTrainerCv"
@@ -124,6 +133,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -140,6 +150,7 @@
                 android:text="@string/label_materi_pelatihan" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -149,11 +160,12 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvCertificationStatus"
-                tools:text="content"
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="content" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnUploadCertificationRequirement"
@@ -164,6 +176,7 @@
                 android:text="@string/label_upload_persyaratan_sertifikasi" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -180,6 +193,7 @@
                 android:text="@string/label_sertifikasi_pelatihan" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text.Style.Default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
