@@ -83,9 +83,6 @@ dependencies {
     debugImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chucker_version"
 
-    // RxDownload
-    implementation "com.github.ssseasonnn:RxDownload:1.1.4"
-
     // Coroutine Download
     implementation "com.github.ssseasonnn:DownloadX:1.0.1"
 
