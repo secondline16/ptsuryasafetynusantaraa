@@ -10,7 +10,6 @@ import com.ssn.app.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
@@ -18,7 +17,6 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import zlc.season.downloadx.Progress
 import zlc.season.downloadx.State
-import zlc.season.downloadx.core.DownloadTask
 import zlc.season.downloadx.download
 import java.io.File
 
@@ -134,7 +132,6 @@ object Helper {
                 .onStart { task.start() }
                 .onCompletion { task.stop(); onComplete.invoke() }
                 .catch { e -> onError.invoke(e) }
-                .distinctUntilChanged()
                 .onEach { state ->
                     when (state) {
                         is State.Waiting -> onWaiting?.invoke()

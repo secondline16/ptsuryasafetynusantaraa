@@ -23,7 +23,7 @@ data class TrainingFollowingDetailResponse(
     val trainingStatus: String? = null,
     @SerializedName("trainer_cv")
     val trainerCv: String? = null,
-    @SerializedName("training_book")
+    @SerializedName("training_materials")
     val trainingBook: String? = null,
     @SerializedName("requirement_status")
     val requirementStatus: String? = null,
